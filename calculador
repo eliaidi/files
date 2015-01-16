@@ -1,0 +1,39 @@
+items/id/shipping_options?zip_code=
+VIP
+CHO
+
+users/id/shipping_options?zip_code= & category_id=
+SYI
+
+sites/id/shipping_options?zip_code_from= & zip_code_to & dimensions=
+MSHOPS
+
+
+
+ITEMS
+                                                      /
+item (de redis) -> obtengo seller_id y category_id                    receiver_address(del zipcode)
+	seller -> modo , preferencias(me2) y address(me2)
+	categoria-> dimensiones (me2 y me1 sin dim)
+		dimensiones ---- quantity ----> box
+		preferencias >
+		box          > validadores
+
+		todo deriva en MongoDB
+
+Mongo
+	ID
+	Rule_ID
+	From >  zipcode  >  low & high (rangos en argentina)
+			city
+			state
+	to > idem from
+	method_id
+	service_ids (lista)
+	weight
+	speed (shipping time)
+	price
+
+Mongo > HT            >  fin
+	  > Display mode  >
+	     (always, optionals, recommended)

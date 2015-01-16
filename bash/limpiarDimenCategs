@@ -1,0 +1,28 @@
+#Para limpiar memcached de dimension categories de todo el arbol de categorias
+
+nohup ls | xargs -I '{}' -P 50 ../borrar.sh '{}' 2>/dev/null  1>/tmp/mlaCategs.log &
+
+
+#Buscar id categoria en lista de archivos de ids de categorias
+
+find . -type f -print0 | xargs -0 grep -l MLA61997
+
+
+
+#Contenido archivo borrar.sh
+
+#!/bin/bash
+
+file=$(cat $1)
+
+for arg in $file
+do
+    echo "Cleaning ${arg}"
+    ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o HashKnownHosts=yes e-000002d6.melicloud.com "echo 'delete DIMCAT-FULL-${arg}' | nc localhost 11211" 2> /dev/null
+    ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o HashKnownHosts=yes e-000002d7.melicloud.com "echo 'delete DIMCAT-FULL-${arg}' | nc localhost 11211" 2> /dev/null
+
+    curl internal.mercadolibre.com/categories/$arg/shipping
+
+done
+
+exit 0
