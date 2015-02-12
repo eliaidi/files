@@ -22,9 +22,9 @@ def getShipment(shipmentId) {
 }
 
 daysToAdd = [
-  0: [ 0, 5, 10 ],
-  1: [ 0, 5, 10 ],
-  2: [ 0 ]
+  0: [ 0, 5, 10 ],  //file: "stale4-19Ene_25Ene.csv"
+  1: [ 0, 5, 10 ],  //file: "stale4-26Ene_01Feb.csv"
+  2: [ 0 ]          //file: "stale4-02Feb_08Feb.csv"
 ]
 
 def getFinalEvent(event, trackingNumber, serviceId) {
